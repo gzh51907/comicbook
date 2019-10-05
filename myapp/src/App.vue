@@ -1,7 +1,7 @@
 <template>
   <el-container>
     <!-- <el-header>Header</el-header> -->
-    <el-main>
+    <el-main style="padding:0">
       <router-view />
     </el-main>
     <el-footer class="footer">
@@ -11,10 +11,10 @@
         mode="horizontal"
         @select="handleSelect"
       >
-        <el-menu-item index="1" class="li">首页</el-menu-item>
-        <el-menu-item index="2" class="li">更新</el-menu-item>
-        <el-menu-item index="3" class="li">书架</el-menu-item>
-        <el-menu-item index="4" class="li">我的</el-menu-item>
+        <el-menu-item index="/shouye" class="li" @click="goto('/shouye')">首页</el-menu-item>
+        <el-menu-item index="/genxin" class="li" @click="goto('/genxin')">更新</el-menu-item>
+        <el-menu-item index="/shujia" class="li" @click="goto('/shujia')">书架</el-menu-item>
+        <el-menu-item index="/wode" class="li" @click="goto('/wode')">我的</el-menu-item>
       </el-menu>
     </el-footer>
   </el-container>
@@ -23,7 +23,24 @@
 <script>
 export default {
   name: "app",
-  components: {}
+  data() {
+    return {
+      activeIndex: ""
+    };
+  },
+  components: {},
+  methods: {
+    handleSelect(index, indexpath) {
+      console.log(index, indexpath);
+      this.activeIndex = index;
+    },
+    goto(path) {
+      this.$router.push(path);
+    }
+  },
+  created() {
+    this.activeIndex = this.$route.path;
+  }
 };
 </script>
 
