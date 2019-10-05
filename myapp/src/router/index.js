@@ -33,6 +33,10 @@ let router = new VueRouter({
             name: 'wode',
             path: '/wode',
             component: wode
+        }, {
+            path: '/',
+            redirect: '/shouye'
+
         }
 
     ]

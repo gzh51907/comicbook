@@ -7,22 +7,22 @@
         :label="day.label"
         :name="day.name"
         type="card"
-      ><el-row :gutter="20">
-           <el-col :span="8"
-            v-for="item in daybook[day.name].info" 
-            :key="item.comic_id" 
+      >
+        <el-row :gutter="20">
+          <el-col
+            :span="8"
+            v-for="item in daybook[day.name].info"
+            :key="item.comic_id"
             style="height:150px"
-            @click.native="goto(item.comic_id)">
-            <el-image
-                style="width:100%"
-                :src="item.feature_img"
-                fit="contain"></el-image>
-                <p>
-                <span>{{item.comic_name}}</span>
-                </p>
-            </el-col>
-</el-row>
-</el-tab-pane>
+            @click.native="goto(item.comic_id)"
+          >
+            <el-image style="width:100%" :src="item.feature_img" fit="contain"></el-image>
+            <p>
+              <span>{{item.comic_name}}</span>
+            </p>
+          </el-col>
+        </el-row>
+      </el-tab-pane>
     </el-tabs>
   </el-container>
 </template>
@@ -30,7 +30,7 @@
 export default {
   data() {
     return {
-      activeName:new Date().getDay()+"",
+      activeName: new Date().getDay() + "",
       date: [
         {
           label: "周日",
@@ -61,33 +61,34 @@ export default {
           name: "6"
         }
       ],
-      daybook:[]
+      daybook: []
     };
   },
   methods: {
     handleClick(tab, event) {
       console.log(tab, event);
     },
-    goto(){
-        
-    }
+    goto() {}
   },
   async created() {
-    let {data} = await this.$axios.get("https://m.manhuatai.com/api/updatelist/",{
-        params:{
-    product_id:"2",
-    productname:"mht",
-    platformname:"wap"
+    let { data } = await this.$axios.get(
+      "https://m.manhuatai.com/api/updatelist/",
+      {
+        params: {
+          product_id: "2",
+          productname: "mht",
+          platformname: "wap"
         }
-    });
-    this.daybook=data.data.update;
-    console.log(this.daybook)
+      }
+    );
+    this.daybook = data.data.update;
+    console.log(this.daybook);
   }
 };
 </script>
 <style lang="scss" scoped>
 * {
-    padding:0;
-    margin:0
+  padding: 0;
+  margin: 0;
 }
 </style>
